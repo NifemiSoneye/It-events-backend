@@ -9,3 +9,5 @@ const router = express.Router();
 router.route("/").post(handleLogin);
 router.route("/refresh").get(handleRefresh);
 router.route("/logout").post(handleLogout);
+
+export default router;
