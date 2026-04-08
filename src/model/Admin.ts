@@ -13,6 +13,10 @@ const adminSchema = new Schema<IAdminDocument>({
     type: String,
     required: true,
   },
+  roles: {
+    type: [String],
+    default: ["Employee"],
+  },
   refreshToken: {
     type: [String],
     default: [],

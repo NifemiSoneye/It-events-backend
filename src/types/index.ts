@@ -1,6 +1,7 @@
 export interface IAdmin {
   username: string;
   password: string;
+  roles: string[]
   refreshToken?: string[];
 }
 
