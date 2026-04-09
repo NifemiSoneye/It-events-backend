@@ -10,6 +10,7 @@ import AttendeesRouter from "./routes/attendeesRoutes";
 import authRoutes from "./routes/authRoutes";
 import { logger, logEvents } from "./middleware/logger";
 import errorHandler from "./middleware/errorHandler";
+import corsOptions from "./config/corsOptions";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 3500;
 connectDB();
 app.use(logger);
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "public")));
