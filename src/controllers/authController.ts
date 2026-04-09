@@ -31,7 +31,7 @@ const handleLogin = asyncHandler(
       res.status(401).json({ message: "Unauthorized" });
       return;
     }
-    const roles: string[] = Object.values(foundUser.roles).filter(Boolean);
+    const roles = foundUser.roles;
 
     const accessToken = jwt.sign(
       {
@@ -59,7 +59,7 @@ const handleLogin = asyncHandler(
 
     res.cookie("jwt", refreshToken, {
       httpOnly: true, //accessible only by web server
-      secure: false, //https
+      secure: process.env.NODE_ENV === "production", //https
       sameSite: "lax", //cross-site cookie
       maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
     });
@@ -67,66 +67,75 @@ const handleLogin = asyncHandler(
   },
 );
 
-const handleRefresh = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  const cookies = req.cookies;
+const handleRefresh = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    const cookies = req.cookies;
 
-  if (!cookies?.jwt) {
-    res.status(401).json({ message: "Unauthorized" });
-    return;
-  }
+    if (!cookies?.jwt) {
+      res.status(401).json({ message: "Unauthorized" });
+      return;
+    }
 
-  const refreshToken = cookies.jwt;
-  jwt.verify(
-    refreshToken,
-    process.env.REFRESH_TOKEN_SECRET as string,
+    const refreshToken = cookies.jwt;
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET as string,
       async (
         err: jwt.VerifyErrors | null,
         decoded: jwt.JwtPayload | string | undefined,
       ) => {
-        if (err) return res.status(403).json({ message: "Forbidden" })
+        if (err) return res.status(403).json({ message: "Forbidden" });
         if (!decoded || typeof decoded === "string") return res.sendStatus(403);
         const foundUser = await Admin.findOne({
-            username: decoded.username,
-            }).exec();
-            if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
-            const roles = Object.values(foundUser.roles);
-            const accessToken = jwt.sign(
-      {
-        UserInfo: {
-          username: foundUser.username,
-          roles: roles,
-        },
+          username: decoded.username,
+          refreshToken: refreshToken,
+        }).exec();
+        if (!foundUser)
+          return res.status(401).json({ message: "Unauthorized" });
+        const roles = foundUser.roles;
+        const accessToken = jwt.sign(
+          {
+            UserInfo: {
+              username: foundUser.username,
+              roles: roles,
+            },
+          },
+          process.env.ACCESS_TOKEN_SECRET as string,
+          { expiresIn: "15m" },
+        );
+        res.json({ accessToken });
       },
-      process.env.ACCESS_TOKEN_SECRET as string,
-      { expiresIn: "15m" },
     );
-    res.json({ accessToken });
-      },
-    ),
-})
+  },
+);
 
-const handleLogout = async (req :Request, res :Response) => {
+const handleLogout = async (req: Request, res: Response) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(204); //No content
   const refreshToken = cookies.jwt.trim();
-  const foundUser = await Admin.findOne({ refreshToken }).exec();
+  const foundUser = await Admin.findOne({
+    refreshToken: { $in: [refreshToken] },
+  }).exec();
   console.log("Found user:", foundUser);
   if (!foundUser) {
-    res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    });
     return res.sendStatus(403);
   }
 
-    foundUser.refreshToken =
+  foundUser.refreshToken =
     foundUser.refreshToken?.filter((rt) => rt !== refreshToken) ?? [];
   const result = await foundUser.save();
   console.log(result);
-  res.clearCookie("jwt", { httpOnly: true, sameSite: "lax", secure: false });
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+  });
   res.json({ message: "Cookie cleared" });
 };
 
-
-export {
-    handleLogin,
-    handleRefresh,
-    handleLogout
-}
+export { handleLogin, handleRefresh, handleLogout };

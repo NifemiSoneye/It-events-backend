@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import verifyJWT from "../middleware/verifyJWT";
 const router = express.Router();
 import {
   getAllAttendees,
@@ -7,7 +8,7 @@ import {
   deleteAttendee,
   getAnalytics,
 } from "../controllers/attendeesController";
-
+router.use(verifyJWT);
 router.get("/analytics", getAnalytics);
 router.route("/").get(getAllAttendees).post(createNewAttendee);
 
