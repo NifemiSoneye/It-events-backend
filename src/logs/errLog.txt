@@ -1,0 +1,11 @@
+20260409	08:30:28	934ca4d3-a542-44c1-b6f0-70971a936c7e	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:30:28	7275e6e9-3d1c-4806-a119-858fad24635d	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:30:44	29d18b9f-f8b8-488b-859d-934f93b00723	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:30:44	56675e0b-0f6c-43e4-9476-d43eadb1dcf8	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:30:47	a5dd715b-dbda-47d1-a8ba-ad5374ce5562	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:30:53	bc22bfba-e7ed-4c3a-aabe-b57758940795	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:31:10	d382a2d5-70c6-415d-bd89-1d9375720122	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:31:10	ea0c4667-f07a-421d-8736-2a7d2e318739	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:31:10	43c2f130-5aee-46ae-9b9b-3098bd08cfdf	 TypeError : allowedOrigins.indexOf is not a function
+20260409	08:33:03	b5fccb16-e627-4c97-9cad-d02f48230e0c	 TypeError : allowedOrigins.indexOf is not a function
+
