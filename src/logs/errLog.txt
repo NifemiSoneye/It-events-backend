@@ -9,3 +9,4 @@
 20260409	08:31:10	43c2f130-5aee-46ae-9b9b-3098bd08cfdf	 TypeError : allowedOrigins.indexOf is not a function
 20260409	08:33:03	b5fccb16-e627-4c97-9cad-d02f48230e0c	 TypeError : allowedOrigins.indexOf is not a function
 
+20260414	08:46:28	f88b3ba4-f6be-4378-af21-406dfb42bbf4	 MongoServerError : E11000 duplicate key error collection: it-events.attendees index: email_1 dup key: { email: "jake@gmail.com" }

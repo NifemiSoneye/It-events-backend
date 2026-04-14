@@ -8,9 +8,10 @@ import {
   deleteAttendee,
   getAnalytics,
 } from "../controllers/attendeesController";
+router.route("/").get(getAllAttendees);
+router.route("/").post(createNewAttendee);
 router.use(verifyJWT);
 router.get("/analytics", getAnalytics);
-router.route("/").get(getAllAttendees).post(createNewAttendee);
 
 router.route("/:id").patch(updateAttendee).delete(deleteAttendee);
 
