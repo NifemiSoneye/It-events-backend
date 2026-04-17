@@ -10,3 +10,21 @@
 20260409	08:33:03	b5fccb16-e627-4c97-9cad-d02f48230e0c	 TypeError : allowedOrigins.indexOf is not a function
 
 20260414	08:46:28	f88b3ba4-f6be-4378-af21-406dfb42bbf4	 MongoServerError : E11000 duplicate key error collection: it-events.attendees index: email_1 dup key: { email: "jake@gmail.com" }
+20260414	10:23:22	89237d91-12dc-4dec-a0f8-30c6f7bdd224	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:23:40	be253450-2dad-41b1-9520-c39b4b254f11	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:24:52	c44312ff-9eb7-4bf4-b3d1-0d4af334be11	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:25:10	37cd1f20-75c8-41ec-95d1-36c3370f577a	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:26:23	e9aa79b6-275e-4a96-a97d-f80310d333d4	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:26:40	82fdfa77-1e0d-430e-9b61-ac6a9d8f0d14	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:28:11	91944da0-6608-40a4-af36-1c961de2b9ef	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:29:42	6125ee68-1671-4e98-8423-321fc0304984	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:31:13	ce0801b6-d9ac-4bc1-8320-d1bdeef39844	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260414	10:31:50	7160b685-5b84-4e7b-9fba-84222fb74300	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	00:26:42	23bda3fe-874a-4089-83fc-da369b4eaccd	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	00:26:55	ba1721dd-8919-439d-bef4-5ac7d4faedc8	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	00:27:02	17aff64b-24e6-4c54-94e0-db1f24c71cca	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	00:28:25	b10dbbe7-cfe6-4ba9-a73b-1190e384256b	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	00:28:33	d89783f6-d36a-4752-b74e-467732d69e8c	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	11:26:29	dfee7089-8036-4c26-8802-a7fcd83a1a22	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260415	11:26:48	6e47007f-cc30-45f1-be8a-b9ff7e8ce1cc	 MongoServerSelectionError : getaddrinfo ENOTFOUND ac-ysh2gna-shard-00-02.owa66vk.mongodb.net
+20260417	09:28:00	aa73d6cc-4285-4f3c-af3c-fbe5d617ecaf	 MongoServerError : E11000 duplicate key error collection: it-events.attendees index: email_1 dup key: { email: "john@gmail.com" }

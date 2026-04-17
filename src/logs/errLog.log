@@ -1,0 +1,4 @@
+20260417	09:12:43	ac7c8d5c-9182-4755-a6df-c2279e4f560d	 Too many requests : Too many login attempts from this IP , please try again after a 15 minutes pause	POST	/	http://localhost:5173
+20260417	09:12:58	04e07cf4-7260-469f-99b9-41edade91253	 Too many requests : Too many login attempts from this IP , please try again after a 15 minutes pause	POST	/	http://localhost:5173
+20260417	09:12:59	6792f93f-a90d-4d6c-8a1b-f0f9619710e6	 Too many requests : Too many login attempts from this IP , please try again after a 15 minutes pause	POST	/	http://localhost:5173
+20260417	09:13:00	484c8e30-86e9-4e74-b933-b5e584b78735	 Too many requests : Too many login attempts from this IP , please try again after a 15 minutes pause	POST	/	http://localhost:5173

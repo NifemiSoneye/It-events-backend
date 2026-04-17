@@ -1,17 +1,12 @@
 import Attendee from "../model/Attendee";
 import asyncHandler from "express-async-handler";
 import { Request, Response } from "express";
+import { sendConfirmationEmail } from "../utils/sendConfirmationEmail";
 
 const getAllAttendees = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     const attendees = await Attendee.find().lean();
-    if (!attendees?.length) {
-      res.status(404).json({
-        message: "No attendee found",
-      });
-      return;
-    }
-    res.json(attendees);
+    res.json(attendees); // returns [] when empty, RTK Query handles it fine
   },
 );
 
@@ -39,6 +34,11 @@ const createNewAttendee = asyncHandler(
     const attendee = await Attendee.create(attendeeObject);
 
     if (attendee) {
+      await sendConfirmationEmail({
+        username: attendee.username,
+        email: attendee.email,
+        ticket: attendee.ticket,
+      });
       res
         .status(201)
         .json({ message: `New attendee ${username} created`, attendee });

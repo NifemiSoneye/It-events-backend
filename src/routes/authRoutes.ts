@@ -1,4 +1,6 @@
 import express from "express";
+import loginLimiter from "../middleware/loginLimiter";
+import { validateLogin } from "../middleware/validateLogin";
 import {
   handleLogin,
   handleRefresh,
@@ -6,7 +8,7 @@ import {
 } from "../controllers/authController";
 const router = express.Router();
 
-router.route("/").post(handleLogin);
+router.route("/").post(loginLimiter, validateLogin, handleLogin);
 router.route("/refresh").get(handleRefresh);
 router.route("/logout").post(handleLogout);
 
