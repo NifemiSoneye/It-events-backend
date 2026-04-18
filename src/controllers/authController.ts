@@ -41,13 +41,13 @@ const handleLogin = asyncHandler(
         },
       },
       process.env.ACCESS_TOKEN_SECRET as string,
-      { expiresIn: "10s" },
+      { expiresIn: "15m" },
     );
 
     const refreshToken = jwt.sign(
       { username: foundUser.username },
       process.env.REFRESH_TOKEN_SECRET as string,
-      { expiresIn: "1m" },
+      { expiresIn: "7d" },
     );
 
     let newRefreshTokenArray = !cookies?.jwt
@@ -60,7 +60,7 @@ const handleLogin = asyncHandler(
     res.cookie("jwt", refreshToken, {
       httpOnly: true, //accessible only by web server
       secure: process.env.NODE_ENV === "production", //https
-      sameSite: "lax", //cross-site cookie
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", //cross-site cookie
       maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
     });
     res.json({ accessToken });
@@ -101,7 +101,7 @@ const handleRefresh = asyncHandler(
             },
           },
           process.env.ACCESS_TOKEN_SECRET as string,
-          { expiresIn: "10s" },
+          { expiresIn: "15m" },
         );
         res.json({ accessToken });
       },
@@ -120,7 +120,7 @@ const handleLogout = async (req: Request, res: Response) => {
   if (!foundUser) {
     res.clearCookie("jwt", {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       secure: process.env.NODE_ENV === "production",
     });
     return res.sendStatus(403);
@@ -132,7 +132,7 @@ const handleLogout = async (req: Request, res: Response) => {
   console.log(result);
   res.clearCookie("jwt", {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
   });
   res.json({ message: "Cookie cleared" });

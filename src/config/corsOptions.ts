@@ -1,8 +1,6 @@
 import allowedOrigins from "./allowedOrigins";
 import { CorsOptions } from "cors";
 
-console.log("allowedOrigins:", allowedOrigins, Array.isArray(allowedOrigins));
-
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
